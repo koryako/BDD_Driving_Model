@@ -3,6 +3,8 @@
 #https://github.com/viorik/ConvLSTM
 #https://github.com/LisaAnne/lisa-caffe-public/tree/lstm_video_deploy/examples/LRCN_evaluate
 #Long-term Recurrent Convolutional Networks for Visual Recognition and Description
+
+https://people.eecs.berkeley.edu/~lisa_anne/LRCN_video
 import tensorflow as tf
 import numpy as np
 """
