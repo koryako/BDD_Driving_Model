@@ -288,7 +288,7 @@ def train():
     input_summaries = copy.copy(tf.get_collection(tf.GraphKeys.SUMMARIES))
 
     init_op = tf.initialize_all_variables()
-
+    #初始化所有变量
     # Number of classes in the Dataset label set plus 1.
     # Label 0 is reserved for an (unused) background class.
     if FLAGS.background_class:
@@ -459,7 +459,7 @@ def train():
     sess = tf.Session(config=config)
     sess.run(init)
 
-
+    #训练开始
 
     # TODO: not supported to load from different number of towers now
     if FLAGS.pretrained_model_checkpoint_path:
