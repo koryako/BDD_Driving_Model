@@ -1,22 +1,29 @@
-# Berkeley DeepDrive (BDD) Driving Model
+
 
 伯克利的深度驾驶模型
-## Project Introduction:
+
 项目介绍
-Within BDD Driving Project, we formulate the self driving task as future egomotion prediction.
+
 在BDD 自动驾驶项目中，我们预测未来汽车的运动动作
+
 To attack the task, we collected [Berkeley DeepDrive Video Dataset](https://goo.gl/forms/7XThUcjpGALkqxFU2) with our partner [Nexar](https://www.getnexar.com/),
 proposed a FCN+LSTM model and implement it using tensorflow.
+
+
 为了完成这个任务我们收集了自己的数据集
+
 ## The Berkeley DeepDrive Video Dataset(BDD-V)
 
 BDD-V dataset will be released [here](https://goo.gl/forms/7XThUcjpGALkqxFU2). Sign up for notification when we release the data
+
 数据集目前还没有放出，可以使用百度的数据集
+
 ## Using Our Code:
 ### Installation
 First clone the codebase to your local file system at $BDD_ROOT.
 ```
 git clone https://github.com/gy20073/BDD_Driving_Model.git && cd BDD_Driving_Model && export BDD_ROOT=$(pwd)
+
 进入BDD_Driving_Model 使得当前目录赋值到变量中
 ```
 For Ubuntu 14.04 and 16.04, you can install all dependencies using:
@@ -63,7 +70,7 @@ python prepare_tfrecords.py --video_index=$DATA_ROOT/train/video_filtered_38_60.
 To train a driving model, first change some path flags in $BDD_ROOT"/config.py". In particular set FLAGS.pretrained_model_path = "$BDD_ROOT/data/tf.caffenet.bin" and FLAGS.data_dir = "$DATA_ROOT/tfrecords". They are paths to the ImageNet pretrained Alexnet model and the TFRecord files we got from the previous data preparation step.
 
 There are a bunch of different types of models proposed in the paper and implemented in this repo. The configuration of each model is a function in `config.py`, such as `discrete_tcnn1` and `continuous_datadriven_bin`. The `discrete_tcnn1` model is a model with temporal convolution of window size 1 and the model predicts discrete driving actions such as `Go`, `Stop`, `Left` and `Right`. The `continuous_datadriven_bin` model is a CNN-LSTM style model that predicts continuous egomotions, including future angular velocity and future speed. The binning method used in this model is a data-driven approach.
-
+https://github.com/ethereon/caffe-tensorflow
 We will use `discrete_tcnn1` as a running example, the training procedures of other models are similar. To train the model, run
 ```
 cd $BDD_ROOT && python config.py train discrete_tcnn1
